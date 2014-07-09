@@ -1,0 +1,58 @@
+<!DOCTYPE html >
+<html >
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Star Ratings</title>
+	<style>
+		.rating {
+			margin: auto;
+			margin-top: 50px;
+		    width: 138px;
+		    unicode-bidi: bidi-override;
+		    direction: rtl;
+		    cursor: pointer;
+		}
+		.rating > span {
+		    display: inline-block;
+		    position: relative;
+		    width: 1.1em;
+		    font-size: 25px;
+		}
+		.rating > span:hover:before,
+		.rating > span:hover ~ span:before,
+		.rating > span.active:before ,
+		.rating > span.active ~ span:before{
+		    content: "\2605";
+		    position: absolute;
+		    color : rgba(255, 238, 53, 0.82)
+		}
+	</style>
+</head>
+
+ <div class="rating">
+    <span>☆</span><span>☆</span><span class="active">☆</span><span>☆</span><span>☆</span>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+	(function($){
+		var star = $('.rating span');
+		var starSelected = $('.rating span.active');
+
+		star.hover(function(){
+			star.removeClass('active');
+		}, function(){
+			starSelected.addClass('active');
+		});
+
+		star.on('click',function(){
+			star.removeClass('active');
+			$(this).addClass('active');
+			starSelected = $(this);
+		});
+	})(jQuery);
+</script>
+
+<body>
+</body>
+</html>
